@@ -1,0 +1,5 @@
+<%= form_with(url: add_questions_quiz_path(@quiz), method: :post, local: true) do |form| %>
+  <%= select_tag 'question_id', options_from_collection_for_select(@questions, 'id', 'desc') %>
+
+  <%= form.submit "Add Question" %>
+<% end %>

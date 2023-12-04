@@ -1,0 +1,41 @@
+<h1><%= @question.desc %></h1>
+
+<div class="mb-3 d-flex flex-row ">
+  <%= link_to "Edit Question", edit_question_path(@question), class: "btn btn-primary btn-sm mx-1" %> 
+  <%= link_to "Back to Questions", questions_path, class: "btn btn-secondary btn-sm mx-1" %> 
+  <%= button_to "Destroy Question", @question, method: :delete, class: "btn btn-danger btn-sm mx-1" %>
+</div>
+
+<h2>Answers:</h2>
+<div class="row">
+  <% @options.each do |option| %>
+    <div class="col-md-6 mb-3">
+      <div class="card">
+        <div class="card-header bg-dark text-white">
+          <h5 class="mb-0"><%= option.description %></h5>
+        </div>
+        <div class="card-body">
+          <p>
+            <strong>Correct Answer:</strong>
+            <%= option.part1 %>
+          </p>
+  
+          <p>
+            <strong>Incorrect Answer:</strong>
+            <%= option.part2 %>
+          </p>
+          <div class="d-flex flex-row">
+          <%= link_to 'Edit', edit_question_option_path(@question, option), class: "btn btn-primary btn-sm mx-1" %>
+  
+          <!-- Button to destroy the option -->
+          <%= button_to 'Destroy', question_option_path(@question, option), method: :delete, class: "btn btn-danger btn-sm mx-1" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to 'New Answer', new_question_option_path(@question), class: "btn btn-success btn-sm" %>
+
+

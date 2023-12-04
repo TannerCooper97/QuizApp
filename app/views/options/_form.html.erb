@@ -1,0 +1,33 @@
+<%= form_with(model: [@question, option]) do |form| %>
+  <% if option.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(option.errors.count, "error") %> prohibited this option from being saved:</h2>
+
+      <ul>
+      <% option.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div>
+    <%= form.label :part1, style: "display: block" %>
+    <%= form.text_field :part1 %>
+  </div>
+
+  <div>
+    <%= form.label :part2, style: "display: block" %>
+    <%= form.text_field :part2 %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

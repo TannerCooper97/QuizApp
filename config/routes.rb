@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
+  resources :quiz_questions
+  resources :quizzes
+  resources :questions do
+    resources :options
+  end
   root "pages#home"
 end
