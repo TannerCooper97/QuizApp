@@ -3,7 +3,11 @@ class QuestionsController < ApplicationController
 
   # GET /questions or /questions.json
   def index
-    @questions = Question.all
+    if params[:type]
+      @questions = Question.where(question_type: params[:type])
+    else
+      @questions = Question.all
+    end
   end
 
   # GET /questions/1 or /questions/1.json
@@ -55,7 +59,7 @@ class QuestionsController < ApplicationController
     @question.quiz_questions.each { |quiz_question| quiz_question.destroy }
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to questions_url, notice: "Question was successfully destroyed." }
+      format.html { redirect_to question_types_url, notice: "Question was successfully destroyed." }
     end
   end
 

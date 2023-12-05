@@ -28,6 +28,6 @@
   </div>
 
   <div>
-    <%= form.submit %>
-  </div>
+    <%= form.submit "Submit", class: "btn btn-primary" %>
+    <%= link_to "Cancel", question_path(option.question), class: "btn btn-danger" %>  </div>
 <% end %>

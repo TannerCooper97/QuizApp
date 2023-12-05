@@ -17,9 +17,9 @@
 
 
     <h4>Questions:</h4>
-        <ul>
+        <ul class="custom-list-style">
           <% quiz.quiz_questions.each do |quiz_question| %>
-            <li><%= truncate(quiz_question.question.desc, length: 75) %></li>
+            <li data-id="<%= quiz_question.question.id %>"><%= truncate(quiz_question.question.desc, length: 75) %></li>
           <% end %>
         </ul>
   </div>

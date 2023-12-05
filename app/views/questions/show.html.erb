@@ -1,12 +1,13 @@
-<h1><%= @question.desc %></h1>
 
+<h2 class="mt-4 mb-3">Question: <%= @question.question_type %></h2>
+<h4 class="mt-2 mb-3"><%= @question.desc %></h4>
 <div class="mb-3 d-flex flex-row ">
   <%= link_to "Edit Question", edit_question_path(@question), class: "btn btn-primary btn-sm mx-1" %> 
-  <%= link_to "Back to Questions", questions_path, class: "btn btn-secondary btn-sm mx-1" %> 
+  <%= link_to "Back to Questions", question_types_path, class: "btn btn-secondary btn-sm mx-1" %>
   <%= button_to "Destroy Question", @question, method: :delete, class: "btn btn-danger btn-sm mx-1" %>
 </div>
 
-<h2>Answers:</h2>
+<h4>Answers:</h4>
 <div class="row">
   <% @options.each do |option| %>
     <div class="col-md-6 mb-3">

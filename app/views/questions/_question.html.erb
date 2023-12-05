@@ -1,12 +1,6 @@
-<div id="<%= dom_id question %>">
-  <p>
-    <strong>What is your question?</strong>
-    <%= question.desc %>
-  </p>
-
-  <p>
-    <strong>What question type is this?</strong>
-    <%= question.question_type %>
-  </p>
-
+<div id="<%= dom_id question %> ">
+  <strong><%= question.question_type %> Question: ID#<%= question.id %></strong>
+    <div>
+      <p><%= truncate(question.desc, length: 100) %></p>
+    </div>
 </div>

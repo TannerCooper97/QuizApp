@@ -15,3 +15,28 @@
  */
 
  @import "bootstrap";
+
+ .custom-list-style {
+    list-style-type: none;
+  }
+  .custom-list-style li::before {
+    content: "ID#" attr(data-id) " ";
+    font-weight: bold;
+    font-size: 0.9em;  // Linked to the <li> element in _quiz.html.erb
+  }
+
+  .unique-form .form-control {
+    width: 75% !important;
+    margin: 0 auto !important;
+  }
+
+  .custom-form label {
+    display: block;
+  }
+
+  .limited-dropdown {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }

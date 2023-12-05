@@ -4,7 +4,6 @@
 
 <div>
   <%= link_to "Edit this option", edit_question_option_path(@question, @option) %> |
-  <%= link_to "Back to options", question_options_path(@question) %>
 
   <%= button_to "Destroy this option", question_option_path(@question, @option), method: :delete %>
 </div>

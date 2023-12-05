@@ -1,28 +1,34 @@
-<%= form_with(model: question) do |form| %>
-  <% if question.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <%= form_with(model: question, html: { class: 'custom-form' }) do |form| %>
+        <% if question.errors.any? %>
+          <div style="color: red">
+            <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
 
-      <ul>
-        <% question.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+            <ul>
+              <% question.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
+
+        <div class="form-group">
+          <%= form.label :desc %>
+          <%= form.text_field :desc, class: 'form-control' %>
+        </div>
+
+        <div class="form-group mb-5">
+          <%= form.label :question_type %>
+          <%= form.select :question_type, ["Essay", "Matching", "Multiple Choice", "Multiple Answer", "True/False"], {}, class: 'form-control' %>
+        </div>
+
+        <div class="actions text-center mt-5">
+          <%= form.submit 'Submit', class: 'btn btn-success' %>
+          <%= link_to 'Cancel', question_types_path, class: 'btn btn-danger' %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.label :desc, style: "display: block" %>
-    <%= form.text_field :desc %>
   </div>
-
-  <div>
-    <%= form.label :question_type, style: "display: block" %>
-    <%= form.text_field :question_type %>
-  </div>
-
-  <div class="actions mr-2 text-center">
-    <%= form.submit 'Next', class: 'btn btn-primary' %>
-    <%= link_to 'Cancel', questions_path, class: 'btn btn-danger' %>
-  </div>
-<% end %>
+</div>
