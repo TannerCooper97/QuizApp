@@ -13,7 +13,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes/new
   def new
     @quiz = Quiz.new
-    3.times { @quiz.quiz_questions.build } # change 3 to the number of questions you want to add
+    5.times { @quiz.quiz_questions.build(points: 0) } # set a default value for points
   end
 
   # GET /quizzes/1/edit
@@ -64,6 +64,6 @@ class QuizzesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def quiz_params
-      params.require(:quiz).permit(:title, :is_survey, :desc, quiz_questions_attributes: [:id, :question_id])
+      params.require(:quiz).permit(:title, :desc, :is_survey, quiz_questions_attributes: [:id, :question_id, :points])
     end
 end

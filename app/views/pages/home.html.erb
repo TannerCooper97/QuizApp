@@ -1,4 +1,12 @@
+<!-- Add the following line to include Bootstrap CSS and Bootstrap Icons in your layout -->
+<!-- Make sure to adjust the path to the Bootstrap CSS and Bootstrap Icons files based on your project setup -->
+<link rel="stylesheet" href="path/to/bootstrap.css">
+<link rel="stylesheet" href="path/to/bootstrap-icons.css">
+
 <div class="container pt-5">
-  <h1><i class="bi bi-gem" style="color: red;"></i> Coming soon</h1>
-  <p>Site is under construction</p>
+  <h1 class="text-center py-5"><i class="bi bi-pen text-warning"></i></h1>
+  <div class="d-flex">
+    <%= link_to "Questions", questions_path, class: "btn custom-btn flex-grow-1 flex-shrink-1 m-5 p-5 text-center text-light bg-dark" %>
+    <%= link_to "Quizzes", quizzes_path, class: "btn custom-btn flex-grow-1 flex-shrink-1 m-5 p-5 text-center text-light bg-dark" %>
+  </div>
 </div>

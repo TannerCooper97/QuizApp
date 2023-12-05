@@ -12,11 +12,16 @@
       <%= quiz.desc %>
     </p>
 
+    <% unless quiz.is_survey %>
+    <p>Total Points: <%= quiz.quiz_questions.sum(:points) %></p>
+    <% end %>
+
+
     <h4>Questions:</h4>
-    <ul>
-      <% quiz.quiz_questions.each do |quiz_question| %>
-        <li><%= quiz_question.question.desc %></li>
-      <% end %>
-    </ul>
+        <ul>
+          <% quiz.quiz_questions.each do |quiz_question| %>
+            <li><%= truncate(quiz_question.question.desc, length: 75) %></li>
+          <% end %>
+        </ul>
   </div>
 </div>
