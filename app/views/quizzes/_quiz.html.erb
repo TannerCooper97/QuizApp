@@ -2,18 +2,17 @@
   <div class="card-body">
     <h5 class="card-title"><%= quiz.title %></h5>
 
-    <p class="card-text">
-      <strong>Is survey:</strong>
-      <%= quiz.is_survey %>
-    </p>
+    
 
     <p class="card-text">
       <strong>Description:</strong>
       <%= quiz.desc %>
     </p>
 
-    <% unless quiz.is_survey %>
-    <p>Total Points: <%= quiz.quiz_questions.sum(:points) %></p>
+    <% if quiz.is_survey %>
+      <strong class="text-success">Survey</strong>
+    <% else %>
+      <strong class="text-danger">Total Points:</strong> <p><%= quiz.quiz_questions.sum(:points) %></p>
     <% end %>
 
 

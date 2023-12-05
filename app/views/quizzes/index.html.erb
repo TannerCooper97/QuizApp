@@ -5,9 +5,9 @@
 
 <p style="color: green"><%= notice %></p>
 
-<h1>Quizzes</h1>
+<h1 class="text-center">Quizzes</h1>
 
-<%= link_to "<i class='bi bi-file-earmark-plus'></i> New quiz".html_safe, new_quiz_path, class: "btn btn-primary" %>
+<%= link_to "<i class='bi bi-file-earmark-plus'></i> New quiz".html_safe, pre_new_quiz_path, class: "btn btn-primary mb-2" %>
 
 <div id="quizzes" class="row">
   <% @quizzes.each_slice(2) do |quizzes_batch| %>

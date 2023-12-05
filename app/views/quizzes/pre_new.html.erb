@@ -1,0 +1,17 @@
+<!-- app/views/quizzes/pre_new.html.erb -->
+<%= form_with(url: new_quiz_path, method: :get, local: true) do |form| %>
+  <div class="mb-3 mt-3 text-center">
+    <%= form.label :number_of_questions, 'Number of Questions' %>
+    <%= form.number_field :number_of_questions, min: 1, required: true, oninvalid: "this.setCustomValidity('Please enter a number greater than 0')", oninput: "this.setCustomValidity('')" %>
+  </div>
+  
+  <div class="mb-3 text-center">
+    <%= form.label :is_survey, 'Is this a survey?' %>
+    <%= form.check_box :is_survey %>
+  </div>
+
+  <div class="actions mr-2 mb-2 text-center">
+    <%= form.submit 'Next', class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', quizzes_path, class: 'btn btn-danger' %>
+  </div>
+<% end %>

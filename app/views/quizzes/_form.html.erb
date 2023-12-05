@@ -1,31 +1,44 @@
 <%= form_with(model: @quiz) do |form| %>
-<% if @quiz.errors.any? %>
-<div style="color: red">
-  <h2><%= pluralize(@quiz.errors.count, "error") %> prohibited this quiz from being saved:</h2>
-  <ul>
-    <% @quiz.errors.each do |error| %>
-    <li><%= error.full_message %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
+  <% if @quiz.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@quiz.errors.count, "error") %> prohibited this quiz from being saved:</h2>
+      <ul>
+        <% @quiz.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+    <%= form.label :title, {}, style: "display: block" %>
+    <%= form.text_field :title, required: true %>
   </div>
+
   <div>
-    <%= form.label :is_survey, style: "display: block" %>
-    <%= form.check_box :is_survey %>
-  </div>
-  <div>
-    <%= form.label :desc, style: "display: block" %>
-    <%= form.text_area :desc %>
+    <%= form.label :desc, {}, style: "display: block" %>
+    <%= form.text_area :desc, required: true %>
   </div>
 
   <%= form.fields_for :quiz_questions do |quiz_question_form| %>
-    <%= quiz_question_form.label :question_id, 'Question' %>
-    <%= quiz_question_form.collection_select :question_id, Question.all, :id, :desc %>
+    <%= quiz_question_form.label :question_id, 'Question'%>
+    <%= quiz_question_form.collection_select :question_id, Question.all, :id, :desc, { prompt: 'Select a question...' }, { class: 'form-control', style: 'width: 75%;' }%>
+    <% if !@quiz.is_survey %>
+      <%= quiz_question_form.label :points, 'Points' %>
+      <%= quiz_question_form.number_field :points, min: 0, required: true%>
+    <% end %>
   <% end %>
 
-  <%= form.submit %>
+  <% if @quiz.is_survey %>
+  <%= form.hidden_field :is_survey, value: true %>
+  <% else %>
+    <div class="mb-3">
+      <%= form.label :is_survey, 'Did you want to make it a survey?' %>
+      <%= form.check_box :is_survey %>
+    </div>
+  <% end %>
+
+  <div class="actions mr-2 mb-2 mt-2 text-center">
+    <%= form.submit 'Next', class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', quizzes_path, class: 'btn btn-danger' %>
+  </div>
 <% end %>

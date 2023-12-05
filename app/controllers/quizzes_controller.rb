@@ -10,10 +10,14 @@ class QuizzesController < ApplicationController
   def show
   end
 
-  # GET /quizzes/new
-  def new
+  def pre_new
     @quiz = Quiz.new
-    5.times { @quiz.quiz_questions.build(points: 0) } # set a default value for points
+  end
+
+  # quizzes_controller.rb
+  def new
+    @quiz = Quiz.new(is_survey: params[:is_survey] == '1')
+    params[:number_of_questions].to_i.times { @quiz.quiz_questions.build }
   end
 
   # GET /quizzes/1/edit

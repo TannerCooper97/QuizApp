@@ -21,7 +21,8 @@
     <%= form.text_field :question_type %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="actions mr-2 text-center">
+    <%= form.submit 'Next', class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', questions_path, class: 'btn btn-danger' %>
   </div>
 <% end %>
