@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_04_023814) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_04_235747) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -72,6 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_04_023814) do
     t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "question_type"
     t.index ["question_id"], name: "index_quiz_questions_on_question_id"
     t.index ["quiz_id"], name: "index_quiz_questions_on_quiz_id"
   end

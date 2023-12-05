@@ -11,5 +11,12 @@
       <strong>Description:</strong>
       <%= quiz.desc %>
     </p>
+
+    <h4>Questions:</h4>
+    <ul>
+      <% quiz.quiz_questions.each do |quiz_question| %>
+        <li><%= quiz_question.question.desc %></li>
+      <% end %>
+    </ul>
   </div>
 </div>

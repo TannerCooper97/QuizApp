@@ -13,10 +13,12 @@ class QuizzesController < ApplicationController
   # GET /quizzes/new
   def new
     @quiz = Quiz.new
+    3.times { @quiz.quiz_questions.build } # change 3 to the number of questions you want to add
   end
 
   # GET /quizzes/1/edit
   def edit
+    @quiz = Quiz.find(params[:id])
   end
 
   # POST /quizzes or /quizzes.json
@@ -36,14 +38,11 @@ class QuizzesController < ApplicationController
 
   # PATCH/PUT /quizzes/1 or /quizzes/1.json
   def update
-    respond_to do |format|
-      if @quiz.update(quiz_params)
-        format.html { redirect_to quiz_url(@quiz), notice: "Quiz was successfully updated." }
-        format.json { render :show, status: :ok, location: @quiz }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @quiz.errors, status: :unprocessable_entity }
-      end
+    @quiz = Quiz.find(params[:id])
+    if @quiz.update(quiz_params)
+      redirect_to @quiz, notice: 'Quiz was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -65,6 +64,6 @@ class QuizzesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def quiz_params
-      params.require(:quiz).permit(:title, :is_survey, :desc)
+      params.require(:quiz).permit(:title, :is_survey, :desc, quiz_questions_attributes: [:id, :question_id])
     end
 end
